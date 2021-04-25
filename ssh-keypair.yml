@@ -1,0 +1,11 @@
+---
+- hosts: webserver
+  gather_facts: false
+  
+  tasks:
+  - name: upload_public_key_to_user
+    authorized_key:
+        user: "root"
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+        
